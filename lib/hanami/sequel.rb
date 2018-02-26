@@ -1,7 +1,3 @@
+require "hanami/sequel/configuration"
+require "hanami/sequel/cli"
 require "hanami/sequel/version"
-
-module Hanami
-  module Sequel
-    # Your code goes here...
-  end
-end
