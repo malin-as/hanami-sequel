@@ -43,5 +43,6 @@ module Hanami
   end
 end
 
+require_relative 'commands/create'
 require_relative 'commands/migration'
 require_relative 'commands/model'
