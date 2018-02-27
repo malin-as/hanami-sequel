@@ -19,6 +19,18 @@ module Hanami
         File.join(File.dirname(__FILE__), 'templates', "#{name}.erb")
       end
 
+      class ErBinding
+        def initialize(**vars)
+          @vars = vars
+        end
+
+        def bind
+          @vars.each_with_object(binding) do |(k, v), b|
+            b.local_variable_set(k.to_sym, v)
+          end
+        end
+      end
+
       class Migration < Hanami::CLI::Command
         argument :name, required: true, desc: 'Name of the migration'
 
@@ -41,3 +53,5 @@ module Hanami
 end
 
 Hanami::CLI.register 'sequel migration', Hanami::Sequel::CLI::Migration
+
+require_relative 'commands/model'
