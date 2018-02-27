@@ -11,7 +11,7 @@ module Hanami
           name = Utils::String.underscore(name)
           destination = File.join('./',
                                   CLI.config.migrations,
-                                  "#{now}-#{name}.rb")
+                                  "#{now}_#{name}.rb")
 
           CLI.generate(CLI.template('migration'), nil, destination)
         end

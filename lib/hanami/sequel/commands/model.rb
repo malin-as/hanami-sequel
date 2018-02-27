@@ -17,7 +17,7 @@ module Hanami
 
           now = Time.now.strftime('%Y%m%d%H%M%S')
           destination = File.join(CLI.config.migrations,
-                                  "#{now}-create-#{table_name}.rb")
+                                  "#{now}_create_#{table_name}.rb")
 
           b = ErBinding.new(table_name: table_name)
 
