@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module Hanami
   module Sequel
     module CLI
@@ -27,6 +29,15 @@ module Hanami
             b.local_variable_set(k.to_sym, v)
           end
         end
+      end
+
+      def self.generate(template, erbinding, destination)
+        dirname = File.dirname(destination)
+        Dir.mkdir_p(dirname) unless Dir.exist?(dirname)
+
+        content = ERB.new(File.read(template))
+                     .result(erbinding&.bind)
+        File.write(destination, content)
       end
     end
   end
