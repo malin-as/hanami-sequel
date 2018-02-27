@@ -7,18 +7,37 @@ module Hanami
         argument :name, required: true, desc: 'Name of the model'
 
         def call(name:, **options)
+          # db/migrations/date-create-table_name.rb
+
           source = CLI.template('model-migration')
 
-          name = Utils::String.underscore(name)
-          table_name = Utils::String.pluralize(name)
+          under_name = Utils::String.underscore(name)
+          table_name = Utils::String.pluralize(under_name)
 
           now = Time.now.strftime('%Y%m%d%H%M%S')
           destination = File.join('./',
                                   CLI.config.migrations,
-                                  "#{now}-#{table_name}.rb")
+                                  "#{now}-create-#{table_name}.rb")
 
           b = ErBinding.new(table_name: table_name)
+          content = ERB.new(File.read(source)).result(b.bind)
 
+          File.write(destination, content)
+
+          # lib/project_name/models/model_name.rb
+
+          source = CLI.template('model-sequel')
+
+          camel_name = Utils::String.classify(name)
+          model_name = "#{camel_name}Model"
+
+          model_path = File.join('./', CLI.lib_path, 'models')
+          Dir.mkdir(model_path) unless Dir.exist?(model_path)
+
+          destination = File.join(model_path, "#{under_name}_model.rb")
+
+          b = ErBinding.new(model_name: model_name,
+                            table_name: table_name)
           content = ERB.new(File.read(source)).result(b.bind)
 
           File.write(destination, content)
