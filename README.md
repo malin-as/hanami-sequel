@@ -1,28 +1,107 @@
 # Hanami::Sequel
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hanami/sequel`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem is designed to replace the `hanami-model` one in your
+[Hanami](https://hanamirb.org/) project. It adds an equivalent set of database
+commands to the `hanami` executable, and generates Sequel models.
 
-TODO: Delete this and the text above, and describe your gem
+Please note that using this gem could be considered bad practice with regards
+to Hanami's architectural goals, as it does not provide any help to separate
+the model into entities and repositories. On the other hand, it does nothing to
+prevent it either.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Follow the instructions for removing `hanami-model`:
+[Use Your Own ORM](http://hanamirb.org/guides/1.1/models/use-your-own-orm/)
+
+Add this line to your application's Gemfile (adding the gem to the `plugins`
+group ensures that the `hanami` executable is correctly extended):
 
 ```ruby
-gem 'hanami-sequel'
+group :plugins do
+  gem 'hanami-sequel'
+end
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install hanami-sequel
-
 ## Usage
 
-TODO: Write usage instructions here
+All the commands start with the `sequel` argument:
+
+```text
+Commands:
+  hanami sequel create
+  hanami sequel drop
+  hanami sequel migrate [VERSION]
+  hanami sequel migration NAME
+  hanami sequel model NAME
+```
+
+### Create your database
+
+Create your database with:
+
+```text
+  hanami sequel create
+```
+
+This command will fail in the `production` environment.
+
+### Drop your database
+
+Drop your database with:
+
+```text
+  hanami sequel drop
+```
+
+This command will fail in the `production` environment.
+
+### Migrate your database
+
+Migrate your database with:
+
+```text
+  hanami sequel migrate [VERSION]
+```
+
+Where `VERSION` can be:
+
+* "up" (default value), to do all the migrations, i.e. `hanami sequel migrate`
+  or `hanami sequel migrate up`.
+* "down", to undo all the migrations, i.e. `hanami sequel migrate down`.
+* an integer/timestamp, representing the first part of the target migration
+  file. E.g. `hanami sequel migrate 20180201153930` to migrate to the
+  database version as of 1st February 2018 at 15:39:30 (if a migration file
+  starting with this value is found).
+* an offset, representing how many migrations to do (positive offset) or to
+  undo (negative offset) from the current state. E.g. `hanami sequel migrate +2`
+  to do 2 more migrations, `hanami sequel migrate -1` to undo the latest
+  migration.
+
+### Create a database migration
+
+Create a migration with:
+
+```text
+  hanami sequel migration NAME
+```
+
+Where `NAME` is an arbitrary name.
+
+### Create a database table
+
+Create a new table with:
+
+```text
+  hanami sequel model NAME
+```
+
+Where `NAME` is the name of the model. This creates a database migration and a
+corresponding Sequel model.
 
 ## Development
 
@@ -32,4 +111,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hanami-sequel.
+Bug reports and pull requests are welcome on GitHub at https://github.com/malin-as/hanami-sequel.
