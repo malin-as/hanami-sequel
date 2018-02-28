@@ -8,28 +8,34 @@ module Hanami
                  desc: 'Version of the migration (number, offset, timestamp, "up" or "down"). Default: "up"'
 
         def call(**options)
-          Hanami::Environment.new             # load DATABASE_URL
-
-          args = {}
-
-          if (v = options[:version])
-            case
-            when v == 'up' then;
-            when v == 'down' then args[:target] = 0
-            when v.start_with?('+') then args[:relative] = v.to_i
-            when v.start_with?('-') then args[:relative] = v.to_i
-            else args[:target] = v.to_i
-            end
-          end
-
-          require 'sequel'
-          ::Sequel.extension :migration
-
-          db = ::Sequel.connect(ENV.fetch('DATABASE_URL'),
-                                loggers: Logger.new($stdout))
-
-          ::Sequel::Migrator.run(db, CLI.config.migrations, **args)
+          Command.migrate(options)
         end
+      end
+    end
+
+    module Command
+      def self.migrate(**options)
+        Hanami::Environment.new             # load DATABASE_URL
+
+        args = {}
+
+        if (v = options[:version])
+          case
+          when v == 'up' then;
+          when v == 'down' then args[:target] = 0
+          when v.start_with?('+') then args[:relative] = v.to_i
+          when v.start_with?('-') then args[:relative] = v.to_i
+          else args[:target] = v.to_i
+          end
+        end
+
+        require 'sequel'
+        ::Sequel.extension :migration
+
+        db = ::Sequel.connect(ENV.fetch('DATABASE_URL'),
+                              loggers: Logger.new($stdout))
+
+        ::Sequel::Migrator.run(db, CLI.config.migrations, **args)
       end
     end
   end
