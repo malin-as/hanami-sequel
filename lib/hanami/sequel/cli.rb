@@ -11,6 +11,10 @@ module Hanami
         @lib_path ||= "lib/#{hanamirc.options[:project]}"
       end
 
+      def self.spec_path
+        @spec_path ||= "spec/#{hanamirc.options[:project]}"
+      end
+
       def self.config
         @config ||= Hanami::Sequel::Configuration.new
       end

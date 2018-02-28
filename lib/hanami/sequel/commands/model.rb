@@ -13,13 +13,14 @@ module Hanami
           camel_name = Utils::String.classify(name)
           model_name = "#{camel_name}Model"
 
+          b = ErBinding.new(model_name: model_name,
+                            table_name: table_name)
+
           # db/migrations/date-create-table_name.rb
 
           now = Time.now.strftime('%Y%m%d%H%M%S')
           destination = File.join(CLI.config.migrations,
                                   "#{now}_create_#{table_name}.rb")
-
-          b = ErBinding.new(table_name: table_name)
 
           CLI.generate(CLI.template('model-migration'), b, destination)
 
@@ -29,10 +30,15 @@ module Hanami
                                   'models',
                                   "/#{under_name}_model.rb")
 
-          b = ErBinding.new(model_name: model_name,
-                            table_name: table_name)
-
           CLI.generate(CLI.template('model-sequel'), b, destination)
+
+          # spec/project_name/models/model_name_spec.rb
+
+          destination = File.join(CLI.spec_path,
+                                  'models',
+                                  "/#{under_name}_model_spec.rb")
+
+          CLI.generate(CLI.template('model-spec'), b, destination)
         end
       end
     end
