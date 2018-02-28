@@ -9,6 +9,8 @@ to Hanami's architectural goals, as it does not provide any help to separate
 the model into entities and repositories. On the other hand, it does nothing to
 prevent it either.
 
+***
+
 ## Installation
 
 Follow the instructions for removing `hanami-model`:
@@ -27,6 +29,8 @@ And then execute:
 
     $ bundle
 
+***
+
 ## Usage
 
 All the commands start with the `sequel` argument:
@@ -35,6 +39,7 @@ All the commands start with the `sequel` argument:
 Commands:
   hanami sequel create
   hanami sequel drop
+  hanami sequel install
   hanami sequel migrate [VERSION]
   hanami sequel migration NAME
   hanami sequel model NAME
@@ -42,30 +47,34 @@ Commands:
 
 ### Create your database
 
-Create your database with:
-
 ```text
-  hanami sequel create
+$ hanami sequel create
 ```
 
 This command will fail in the `production` environment.
 
 ### Drop your database
 
-Drop your database with:
-
 ```text
-  hanami sequel drop
+$ hanami sequel drop
 ```
 
 This command will fail in the `production` environment.
 
-### Migrate your database
-
-Migrate your database with:
+### Install your database
 
 ```text
-  hanami sequel migrate [VERSION]
+$ hanami sequel install
+```
+
+This command `drop`s, `create`s, then `migrate`s your database. It will fail in
+the `production` environment.
+
+
+### Migrate your database
+
+```text
+$ hanami sequel migrate [VERSION]
 ```
 
 Where `VERSION` can be:
@@ -84,30 +93,30 @@ Where `VERSION` can be:
 
 ### Create a database migration
 
-Create a migration with:
-
 ```text
-  hanami sequel migration NAME
+$ hanami sequel migration NAME
 ```
 
 Where `NAME` is an arbitrary name.
 
 ### Create a database table
 
-Create a new table with:
-
 ```text
-  hanami sequel model NAME
+$ hanami sequel model NAME
 ```
 
 Where `NAME` is the name of the model. This creates a database migration and a
 corresponding Sequel model.
+
+***
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+***
 
 ## Contributing
 

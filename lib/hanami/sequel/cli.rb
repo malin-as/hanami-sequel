@@ -45,6 +45,7 @@ end
 
 require_relative 'commands/create'
 require_relative 'commands/drop'
+require_relative 'commands/install'
 require_relative 'commands/migrate'
 require_relative 'commands/migration'
 require_relative 'commands/model'
