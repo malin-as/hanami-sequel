@@ -16,6 +16,12 @@ prevent it either.
 Follow the instructions for removing `hanami-model`:
 [Use Your Own ORM](http://hanamirb.org/guides/1.1/models/use-your-own-orm/)
 
+Add this line to your `config/environment.rb`:
+
+```ruby
+require "hamani/sequel"
+```
+
 Add this line to your application's Gemfile (adding the gem to the `plugins`
 group ensures that the `hanami` executable is correctly extended):
 
@@ -28,6 +34,13 @@ end
 And then execute:
 
     $ bundle
+
+***
+
+## Configuration
+
+As of now, the paths to migrations and models are hardcoded respectively to
+`db/migrations/` and `lib/#{project_name}/models/`.
 
 ***
 
@@ -45,37 +58,28 @@ Commands:
   hanami sequel model NAME
 ```
 
+### Create a database table
+
+    $ hanami sequel model NAME
+
+Where `NAME` is the name of the model. This creates a database migration and a
+corresponding Sequel model.
+
+### Create a database migration
+
+    $ hanami sequel migration NAME
+
+Where `NAME` is an arbitrary name.
+
 ### Create your database
 
-```text
-$ hanami sequel create
-```
+    $ hanami sequel create
 
 This command will fail in the `production` environment.
-
-### Drop your database
-
-```text
-$ hanami sequel drop
-```
-
-This command will fail in the `production` environment.
-
-### Install your database
-
-```text
-$ hanami sequel install
-```
-
-This command `drop`s, `create`s, then `migrate`s your database. It will fail in
-the `production` environment.
-
 
 ### Migrate your database
 
-```text
-$ hanami sequel migrate [VERSION]
-```
+    $ hanami sequel migrate [VERSION]
 
 Where `VERSION` can be:
 
@@ -91,22 +95,18 @@ Where `VERSION` can be:
   to do 2 more migrations, `hanami sequel migrate -1` to undo the latest
   migration.
 
-### Create a database migration
+### Drop your database
 
-```text
-$ hanami sequel migration NAME
-```
+    $ hanami sequel drop
 
-Where `NAME` is an arbitrary name.
+This command will fail in the `production` environment.
 
-### Create a database table
+### Install your database
 
-```text
-$ hanami sequel model NAME
-```
+    $ hanami sequel install
 
-Where `NAME` is the name of the model. This creates a database migration and a
-corresponding Sequel model.
+This command `drop`s, `create`s, then `migrate`s your database. It will fail in
+the `production` environment.
 
 ***
 

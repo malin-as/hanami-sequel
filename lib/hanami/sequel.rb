@@ -1,3 +1,9 @@
 require "hanami/sequel/configuration"
-require "hanami/sequel/cli"
+
+if defined?(Hanami::CLI)
+  require "hanami/sequel/cli"
+else
+  require "hanami/sequel/model"
+end
+
 require "hanami/sequel/version"
