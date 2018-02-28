@@ -23,9 +23,7 @@ module Hanami
           case
           when v == 'up' then;
           when v == 'down' then args[:target] = 0
-          when v.start_with?('+') then args[:relative] = v.to_i
-          when v.start_with?('-') then args[:relative] = v.to_i
-          else args[:target] = v.to_i
+          else args[:target] = Integer(v)
           end
         end
 

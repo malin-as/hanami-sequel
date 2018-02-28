@@ -86,14 +86,10 @@ Where `VERSION` can be:
 * "up" (default value), to do all the migrations, i.e. `hanami sequel migrate`
   or `hanami sequel migrate up`.
 * "down", to undo all the migrations, i.e. `hanami sequel migrate down`.
-* an integer/timestamp, representing the first part of the target migration
-  file. E.g. `hanami sequel migrate 20180201153930` to migrate to the
-  database version as of 1st February 2018 at 15:39:30 (if a migration file
-  starting with this value is found).
-* an offset, representing how many migrations to do (positive offset) or to
-  undo (negative offset) from the current state. E.g. `hanami sequel migrate +2`
-  to do 2 more migrations, `hanami sequel migrate -1` to undo the latest
-  migration.
+* a timestamp, representing the first part of the target migration file. E.g.
+  `hanami sequel migrate 20180201153930` to migrate to the database version as
+  of 1st February 2018 at 15:39:30 (if a migration file starting with this
+  value is found).
 
 ### Drop your database
 
