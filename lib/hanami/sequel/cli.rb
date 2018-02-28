@@ -32,8 +32,10 @@ module Hanami
       end
 
       def self.generate(template, erbinding, destination)
+        raise "File #{destination} already exists" if File.exist?(destination)
+
         dirname = File.dirname(destination)
-        Dir.mkdir_p(dirname) unless Dir.exist?(dirname)
+        FileUtils.mkdir_p(dirname) unless Dir.exist?(dirname)
 
         content = ERB.new(File.read(template))
                      .result(erbinding&.bind)
