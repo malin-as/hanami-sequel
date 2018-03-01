@@ -9,8 +9,6 @@ to Hanami's architectural goals, as it does not provide any help to separate
 the model into entities and repositories. On the other hand, it does nothing to
 prevent it either.
 
-***
-
 ## Installation
 
 Follow the instructions for removing `hanami-model`:
@@ -27,7 +25,7 @@ group ensures that the `hanami` executable is correctly extended):
 
 ```ruby
 group :plugins do
-  gem 'hanami-sequel'
+  gem 'hanami-sequel', '~> 1.1.0'
 end
 ```
 
@@ -35,14 +33,16 @@ And then execute:
 
     $ bundle
 
-***
+## Versioning
+
+This gem's version is based on the major and minor versions of Hanami. For
+`hanami-X.Y.Z`, use `hanami-sequel-X.Y.P`. This gem's patch version (denoted as
+`P`) is independent from Hanami's patch version (denoted as `Z`).
 
 ## Configuration
 
 As of now, the paths to migrations and models are hardcoded respectively to
 `db/migrations/` and `lib/#{project_name}/models/`.
-
-***
 
 ## Usage
 
@@ -58,26 +58,26 @@ Commands:
   hanami sequel model NAME
 ```
 
-### Create a database table
+#### Create a database table
 
     $ hanami sequel model NAME
 
-Where `NAME` is the name of the model. This creates a database migration and a
-corresponding Sequel model.
+Where `NAME` is the name of the model. This creates a database migration, a
+Sequel model and a spec file.
 
-### Create a database migration
+#### Create a database migration
 
     $ hanami sequel migration NAME
 
 Where `NAME` is an arbitrary name.
 
-### Create your database
+#### Create the database
 
     $ hanami sequel create
 
 This command will fail in the `production` environment.
 
-### Migrate your database
+#### Migrate the database
 
     $ hanami sequel migrate [VERSION]
 
@@ -91,28 +91,24 @@ Where `VERSION` can be:
   of 1st February 2018 at 15:39:30 (if a migration file starting with this
   value is found).
 
-### Drop your database
+#### Drop the database
 
     $ hanami sequel drop
 
 This command will fail in the `production` environment.
 
-### Install your database
+#### Install the database
 
     $ hanami sequel install
 
 This command `drop`s, `create`s, then `migrate`s your database. It will fail in
 the `production` environment.
 
-***
-
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-***
 
 ## Contributing
 

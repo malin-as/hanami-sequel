@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hanami-sequel (0.1.0)
+    hanami-sequel (1.1.0)
       hanami (~> 1.1.0)
       sequel (~> 5.0)
 
