@@ -17,7 +17,7 @@ Follow the instructions for removing `hanami-model`:
 Add this line to your `config/environment.rb`:
 
 ```ruby
-require "hamani/sequel"
+require "hamani/sequel/model"
 ```
 
 Add this line to your application's Gemfile (adding the gem to the `plugins`
