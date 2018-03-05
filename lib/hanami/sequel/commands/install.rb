@@ -6,6 +6,7 @@ module Hanami
           Command.drop
           Command.create
           Command.migrate
+          Command.seed
         end
       end
     end

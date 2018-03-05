@@ -1,2 +1,14 @@
 class <%= model_name %> < Sequel::Model(:<%= table_name %>)
 end
+
+# Use this section to seed your database with constant values.
+# It can safely be removed if unneeded.
+module Hanami::Sequel::Seed
+  def self.<%= table_name %>
+    <%= model_name %>.import(<%= model_name %>.columns, [
+      # place your data here, one array per tuple, e.g.
+      # [ 1, 'left' ],
+      # [ 2, 'right' ]
+    ])
+  end
+end

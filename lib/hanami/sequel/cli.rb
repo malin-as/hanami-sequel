@@ -11,6 +11,10 @@ module Hanami
         @lib_path ||= "lib/#{hanamirc.options[:project]}"
       end
 
+      def self.models_path
+        @models_path ||= File.join(lib_path, 'models')
+      end
+
       def self.spec_path
         @spec_path ||= "spec/#{hanamirc.options[:project]}"
       end
@@ -55,3 +59,4 @@ require_relative 'commands/install'
 require_relative 'commands/migrate'
 require_relative 'commands/migration'
 require_relative 'commands/model'
+require_relative 'commands/seed'

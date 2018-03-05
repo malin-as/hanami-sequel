@@ -56,6 +56,7 @@ Commands:
   hanami sequel migrate [VERSION]
   hanami sequel migration NAME
   hanami sequel model NAME
+  hanami sequel seed
 ```
 
 #### Create a database table
@@ -91,6 +92,14 @@ Where `VERSION` can be:
   of 1st February 2018 at 15:39:30 (if a migration file starting with this
   value is found).
 
+#### Seed the database
+
+    $ hanami sequel seed
+
+This command will look up your models for `Hanami:Sequel:Seed` class methods
+used to import constants into your tables. If an error occurs, the whole `seed`
+operation will be rolled back.
+
 #### Drop the database
 
     $ hanami sequel drop
@@ -101,7 +110,7 @@ This command will fail in the `production` environment.
 
     $ hanami sequel install
 
-This command `drop`s, `create`s, then `migrate`s your database. It will fail in
+This command `drop`s, `create`s, `migrate`s, then `seed`s your database. It will fail in
 the `production` environment.
 
 ## Development
