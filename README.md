@@ -5,7 +5,7 @@ This gem is designed to replace the `hanami-model` one in your
 commands to the `hanami` executable, and generates Sequel models.
 
 Please note that using this gem could be considered bad practice with regards
-to Hanami's architectural goals, as it does not provide any help to separate
+to Hanami’s architectural goals, as it does not provide any help to separate
 the model into entities and repositories. On the other hand, it does nothing to
 prevent it either.
 
@@ -20,7 +20,7 @@ Add this line to your `config/environment.rb`:
 require "hamani/sequel/model"
 ```
 
-Add this line to your application's Gemfile (adding the gem to the `plugins`
+Add this line to your application’s Gemfile (adding the gem to the `plugins`
 group ensures that the `hanami` executable is correctly extended):
 
 ```ruby
@@ -35,9 +35,9 @@ And then execute:
 
 ## Versioning
 
-This gem's version is based on the major and minor versions of Hanami. For
-`hanami-X.Y.Z`, use `hanami-sequel-X.Y.P`. This gem's patch version (denoted as
-`P`) is independent from Hanami's patch version (denoted as `Z`).
+This gem’s version is based on the major and minor versions of Hanami. For
+`hanami-X.Y.Z`, use `hanami-sequel-X.Y.P`. This gem’s patch version (denoted as
+`P`) is independent from Hanami’s patch version (denoted as `Z`).
 
 ## Configuration
 
@@ -64,7 +64,8 @@ Commands:
     $ hanami sequel model NAME
 
 Where `NAME` is the name of the model. This creates a database migration, a
-Sequel model and a spec file.
+Sequel model and a spec file. Additionally, a Sequel spec helper file will be
+created if none exists.
 
 #### Create a database migration
 
@@ -110,14 +111,20 @@ This command will fail in the `production` environment.
 
     $ hanami sequel install
 
-This command `drop`s, `create`s, `migrate`s, then `seed`s your database. It will fail in
-the `production` environment.
+This command `drop`s, `create`s, `migrate`s, then `seed`s your database. It
+will fail in the `production` environment.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run
+`rake spec` to run the tests. You can also run `bin/console` for an interactive
+prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`. To
+release a new version, update the version number in `version.rb`, and then run
+`bundle exec rake release`, which will create a git tag for the version, push
+git commits and tags, and push the `.gem` file to
+[rubygems.org](https://rubygems.org).
 
 ## Known issues / To-do list
 
@@ -126,4 +133,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/malin-as/hanami-sequel.
+Bug reports and pull requests are welcome on GitHub at
+[https://github.com/malin-as/hanami-sequel](https://github.com/malin-as/hanami-sequel).
