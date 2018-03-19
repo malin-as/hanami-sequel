@@ -1,4 +1,5 @@
 require 'erb'
+require 'fileutils'
 
 module Hanami
   module Sequel
@@ -38,7 +39,17 @@ module Hanami
                                   'models',
                                   "/#{under_name}_model_spec.rb")
 
-          CLI.generate(CLI.template('model-spec'), b, destination)
+          model_spec = "model-spec-#{CLI.hanamirc_test}"
+          CLI.generate(CLI.template(model_spec), b, destination)
+
+          # spec/model_helpers.rb
+
+          dest_helper = 'spec/models_helper.rb'
+
+          unless File.exist?(dest_helper)
+            model_helper = "models-helper-#{CLI.hanamirc_test}"
+            CLI.generate(CLI.template(model_helper), nil, dest_helper)
+          end
         end
       end
     end

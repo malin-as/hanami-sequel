@@ -1,0 +1,13 @@
+# This is for minitest/test
+# cf https://sequel.jeremyevans.net/rdoc/files/doc/testing_rdoc.html
+
+# Use this class as the base class for your tests
+class SequelTestCase < Minitest::Test
+  def run(*args, &block)
+    Sequel::Model.db.transaction(rollback: :always,
+                                 auto_savepoint: true,
+                                 isolation: :serializable) do
+      super
+    end
+  end
+end

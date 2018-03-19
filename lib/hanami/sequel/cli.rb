@@ -7,6 +7,10 @@ module Hanami
         @hanamirc ||= Hanamirc.new(Pathname.new('.'))
       end
 
+      def self.hanamirc_test
+        hanamirc.options[:test] || hanamirc.default_options[:test]
+      end
+
       def self.lib_path
         @lib_path ||= "lib/#{hanamirc.options[:project]}"
       end

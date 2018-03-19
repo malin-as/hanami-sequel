@@ -1,0 +1,19 @@
+RSpec.configure do |config|
+  config.before(:suite) do
+    # you can prepare your database contents here
+  end
+
+  # Each test is ran within a serializable transaction to ensure the maximum
+  # isolation level possible. This allows parallelisation of the tests.
+  config.around(:each, type: :model) do |example|
+    Sequel::Model.db.transaction(rollback: :always,
+                                 auto_savepoint: true,
+                                 isolation: :serializable) do
+      example.run
+    end
+  end
+
+  config.after(:suite) do
+    # you can remove your database contents here
+  end
+end
