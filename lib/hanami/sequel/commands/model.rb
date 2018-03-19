@@ -46,9 +46,13 @@ module Hanami
 
           dest_helper = 'spec/models_helper.rb'
 
-          unless File.exist?(dest_helper)
+          if File.exist?(dest_helper)
+            CLI.log_file_handling('skip', dest_helper)
+          else
             model_helper = "models-helper-#{CLI.hanamirc_test}"
             CLI.generate(CLI.template(model_helper), nil, dest_helper)
+
+            CLI.log_file_handling('create', dest_helper)
           end
         end
       end

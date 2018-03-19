@@ -52,6 +52,12 @@ module Hanami
         content = ERB.new(File.read(template))
                      .result(erbinding&.bind)
         File.write(destination, content)
+
+        log_file_handling('create', destination)
+      end
+
+      def self.log_file_handling(verb, file)
+        puts "%12s  %s" % [verb, file]
       end
     end
   end
