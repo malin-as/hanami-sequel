@@ -58,7 +58,7 @@ GEM
       hanami-utils (~> 1.1)
     hanami-controller (1.1.1)
       hanami-utils (~> 1.1)
-      rack (~> 2.0)
+      rack (>= 2.0.6)
     hanami-helpers (1.1.1)
       hanami-utils (~> 1.1)
     hanami-mailer (1.1.0)
