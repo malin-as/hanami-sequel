@@ -6,6 +6,7 @@ module Hanami
                  required: false,
                  default: 'up',
                  desc: 'Version of the migration (number, offset, timestamp, "up" or "down"). Default: "up"'
+        option :allow_missing, default: false, values: %w[true false], desc: 'Allow missing migration files (usefull when migrating from legacy databases)'
 
         def call(**options)
           Command.migrate(options)
@@ -25,6 +26,10 @@ module Hanami
           when v == 'down' then args[:target] = 0
           else args[:target] = Integer(v)
           end
+        end
+
+        if options.fetch(:allow_missing) == true
+          args[:allow_missing_migration_files] = true
         end
 
         require 'sequel'
