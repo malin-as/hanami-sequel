@@ -28,7 +28,7 @@ module Hanami
           end
         end
 
-        if options.fetch(:allow_missing) == true
+        if options.fetch(:allow_missing) == 'true'
           args[:allow_missing_migration_files] = true
         end
 
