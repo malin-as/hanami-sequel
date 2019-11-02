@@ -64,6 +64,7 @@ module Hanami
 end
 
 require_relative 'commands/create'
+require_relative 'commands/load_schema'
 require_relative 'commands/drop'
 require_relative 'commands/install'
 require_relative 'commands/migrate'

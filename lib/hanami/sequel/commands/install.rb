@@ -5,6 +5,7 @@ module Hanami
         def call(**options)
           Command.drop
           Command.create
+          Command.load_schema
           Command.migrate
           Command.seed
         end
