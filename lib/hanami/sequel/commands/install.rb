@@ -7,7 +7,6 @@ module Hanami
           Command.create
           Command.load_schema
           Command.migrate
-          Command.seed
         end
       end
     end
