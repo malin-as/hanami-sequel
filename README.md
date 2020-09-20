@@ -12,7 +12,7 @@ prevent it either.
 ## Installation
 
 Follow the instructions for removing `hanami-model`:
-[Use Your Own ORM](http://hanamirb.org/guides/1.1/models/use-your-own-orm/)
+[Use Your Own ORM](https://guides.hanamirb.org/models/use-your-own-orm/)
 
 Add this line to your `config/environment.rb`:
 

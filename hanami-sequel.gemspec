@@ -34,5 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
 
   spec.add_dependency "sequel", "~> 5.0"
-  spec.add_dependency "hanami", "~> 1.1.0"
+  spec.add_dependency "hanami", "~> 1.3"
 end
