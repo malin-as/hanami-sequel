@@ -85,7 +85,7 @@ GEM
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     mini_mime (1.0.0)
-    rack (2.2.3)
+    rack (2.2.6.3)
     rake (13.0.1)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
